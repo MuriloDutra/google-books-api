@@ -1,4 +1,4 @@
-# Google Books API POC
+# Google Books API - POC (Proof Of Concept)
 
 A simple Node.js application that demonstrates the usage of the Google Books API using Express.
 
