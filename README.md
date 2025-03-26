@@ -1,6 +1,14 @@
 # Google Books API POC
 
-A simple Node.js application that demonstrates the usage of the Google Books API.
+A simple Node.js application that demonstrates the usage of the Google Books API using Express.
+
+## Features
+
+- RESTful API endpoint for searching books
+- Express server implementation
+- Error handling and input validation
+- JSON response format
+- Simple HTML interface for testing
 
 ## Setup
 
@@ -9,26 +17,66 @@ A simple Node.js application that demonstrates the usage of the Google Books API
 npm install
 ```
 
-2. Run the application:
+2. Start the server:
 ```bash
 npm start
 ```
 
-## Features
+The server will start on port 3000 by default. You can change the port by setting the `PORT` environment variable.
 
-- Search for books using the Google Books API
-- Display book details including:
-  - Title
-  - Authors
-  - Publication date
-  - Description
-  - Page count
-  - Categories
-  - Cover image (if available)
+## API Endpoints
 
-## Example Usage
+### 1. Search Books
+```
+GET /api/search?q=your search query
+```
 
-The application currently searches for "harry potter" by default. To modify the search query, edit the `query` variable in the `main()` function in `index.js`.
+Search for books using the Google Books API.
+
+**Parameters:**
+- `q` (required): Your search query (e.g., "harry potter", "the lord of the rings")
+
+**Example Request:**
+```bash
+curl "http://localhost:3000/api/search?q=harry potter"
+```
+
+**Example Response:**
+```json
+[
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "authors": ["J.K. Rowling"],
+    "publishedDate": "1997-06-26",
+    "description": "...",
+    "pageCount": 320,
+    "categories": ["Fiction", "Fantasy"],
+    "imageLinks": {
+      "thumbnail": "http://books.google.com/books/content?id=..."
+    }
+  }
+]
+```
+
+**Error Responses:**
+- 400 Bad Request: When no search query is provided
+- 500 Internal Server Error: When the Google Books API request fails
+
+### 2. Home Page
+```
+GET /
+```
+
+A simple HTML page with instructions and an example link.
+
+## Testing the API
+
+1. Open your browser and visit `http://localhost:3000`
+2. Click the example link or use the search endpoint directly
+3. Use curl or any API client to make requests:
+```bash
+curl "http://localhost:3000/api/search?q=harry potter"
+```
 
 ## API Reference
 
